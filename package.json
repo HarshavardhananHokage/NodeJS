@@ -1,0 +1,19 @@
+{
+  "name": "general",
+  "version": "1.0.0",
+  "description": "General App for testing",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HarshavardhanHokage/General.git"
+  },
+  "author": "Harshavardhanan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HarshavardhanHokage/General/issues"
+  },
+  "homepage": "https://github.com/HarshavardhanHokage/General#readme"
+}
