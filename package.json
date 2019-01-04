@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/HarshavardhanHokage/General/issues"
   },
-  "homepage": "https://github.com/HarshavardhanHokage/General#readme"
+  "homepage": "https://github.com/HarshavardhanHokage/General#readme",
+  "dependencies": {
+    "express-generator": "^4.16.0"
+  }
 }
