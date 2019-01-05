@@ -1,0 +1,3 @@
+Body Parser JSON and URLEncoded
+Cookie Parser
+HBS and Partials/Actually the most used template engine for node js

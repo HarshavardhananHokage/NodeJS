@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node bin/www",
-    "start-debug": "set DEBUG=express:* & node bin/www"
+    "start-debug": "cross-env PORT=4242 DEBUG=fibonacci:* node bin/www",
+    "nodemon": "nodemon bin/www",
+    "fibserver": "cross-env SERVERPORT=3002 node fiboServer"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -13,5 +15,10 @@
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0"
+  },
+  "devDependencies": {
+    "axios": "^0.18.0",
+    "cross-env": "^5.2.0",
+    "nodemon": "^1.18.9"
   }
 }
