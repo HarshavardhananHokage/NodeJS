@@ -1,3 +1,8 @@
-Body Parser JSON and URLEncoded
+Body Parser
 Cookie Parser
 HBS and Partials/Actually the most used template engine for node js
+Iterable Protocols - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
+Promises
+Generators
+Async & Await
+Express Router
