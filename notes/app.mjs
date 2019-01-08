@@ -1,22 +1,34 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var hbs = require('hbs');
+//import fs from 'fs-extra';
+import url, { URL } from 'url';
+import express from 'express';
+import hbs from 'hbs';
+import path from 'path';
+//import util from 'util';
+//import favicon from 'serve-favicon';
+import logger from 'morgan';
+import cookieParser from 'cookie-parser';
+// import bodyParser from 'body-parser';
+import DBG from 'debug';
+const debug = DBG('notes:debug'); 
+const error = DBG('notes:error'); 
+import { router as index } from './routes/index';
+// const users = require('./routes/users');
+import { router as notes } from './routes/notes'; 
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var notesRouter = require('./routes/notes');
+// Workaround for lack of __dirname in ES6 modules
+const __dirname = path.dirname(new URL(import.meta.url).pathname).slice(1,);
+console.log(__dirname);
 
-var app = express();
+const app = express();
+
+import rfs from 'rotating-file-stream';
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 hbs.registerPartials(path.join(__dirname, 'partials'));
 
-app.use(logger('dev'));
+app.use(logger(process.env.REQUEST_LOG_FORMAT || 'dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -30,9 +42,8 @@ app.use('/assets/vendor/popper.js', express.static(
 app.use('/assets/vendor/feather-icons', express.static(
   path.join(__dirname, 'node_modules', 'feather-icons', 'dist'))); 
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/notes', notesRouter);
+app.use('/', index);
+app.use('/notes', notes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -50,4 +61,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+export default app;
