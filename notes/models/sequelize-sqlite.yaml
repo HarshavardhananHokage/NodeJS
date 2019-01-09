@@ -1,0 +1,6 @@
+dbname: notes 
+username:
+password:
+params:
+    dialect: sqlite
+    storage: ./db/sequelize/notes-sequelize.sqlite3
