@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/HarshavardhanHokage/General#readme",
   "dependencies": {
-    "express-generator": "^4.16.0"
+    "bootstrap": "^4.2.1",
+    "express-generator": "^4.16.0",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.6"
   }
 }

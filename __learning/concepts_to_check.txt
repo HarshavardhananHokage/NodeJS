@@ -6,3 +6,6 @@ Promises
 Generators
 Async & Await
 Express Router
+Application Logger Framework for Node
+Winston log rotation
+Node error handling (promise rejection, module error, etc. etc.)

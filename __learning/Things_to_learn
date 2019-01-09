@@ -1,0 +1,6 @@
+NoSQL Databases- CouchDB, Cassandra etc.
+Redis - Used as a database, cache and message broker.
+SocketIO - Library used for real-time web applications
+Clustering - To use multi-core systems and to divide the load.
+Sharding- Divide larger databases into small ones.
+Streaming services
