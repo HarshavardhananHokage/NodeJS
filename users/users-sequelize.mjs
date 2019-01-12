@@ -12,24 +12,19 @@ var sequlz;
 async function connectDB() {
 
     if (SQUser) return SQUser.sync();
-
-    const yamltext = await fs.readFile(process.env.SEQUELIZE_CONNECT,
-        'utf8');
+    const yamltext = await fs.readFile(process.env.SEQUELIZE_CONNECT, 'utf8');
     const params = await jsyaml.safeLoad(yamltext, 'utf8');
 
     if (!sequlz) sequlz = new Sequelize(params.dbname, params.username,
         params.password,
         params.params);
-
-    // These fields largely come from the Passport / Portable Contacts 
-    schema.
+    // These fields largely come from the Passport / Portable Contacts schema.
         // See http://www.passportjs.org/docs/profile
         //
         // The emails and photos fields are arrays in Portable Contacts. 
         // We'd need to set up additional tables for those.
         //
-        // The Portable Contacts "id" field maps to the "username" field 
-        here
+        // The Portable Contacts "id" field maps to the "username" field here
     if (!SQUser) SQUser = sequlz.define('User', {
         username: { type: Sequelize.STRING, unique: true },
         password: Sequelize.STRING,
@@ -77,14 +72,20 @@ export async function destroy(username) {
 }
 
 export async function userPasswordCheck(username, password) {
+    console.log("Came Here 3"); 
     const SQUser = await connectDB();
     const user = await SQUser.find({ where: { username: username } });
     if (!user) {
+        console.log("Came Here 4"); 
         return { check: false, username: username, message: "Could not find user" };
     } else if (user.username === username && user.password ===
         password) {
+            console.log("Came Here 5"); 
         return { check: true, username: user.username };
     } else {
+        console.log(user.password);
+        console.log("Came Here 6"); 
+        console.log(password);
         return {
             check: false, username: username, message: "Incorrect password"
         };

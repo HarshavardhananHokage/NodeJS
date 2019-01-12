@@ -28,6 +28,7 @@ server.post('/create-user', async (req, res, next) => {
             req.params.familyName, req.params.givenName,
             req.params.middleName,
             req.params.emails, req.params.photos);
+        console.log("dsadasd");
         res.send(result);
         next(false);
     } catch (err) { res.send(500, err); next(false); }
@@ -90,10 +91,14 @@ server.del('/destroy/:username', async (req, res, next) => {
 
 // Check password
 server.post('/passwordCheck', async (req, res, next) => {
+    //console.log("Came Here 1"); 
     try {
-        await usersModel.userPasswordCheck(
+        let check = await usersModel.userPasswordCheck(
             req.params.username, req.params.password);
+      console.log("Came Here for checking"); 
+      console.log(check);
         res.send(check);
+        //console.log("Came Here 4"); 
         next(false);
     } catch (err) { res.send(500, err); next(false); }
 });

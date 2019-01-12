@@ -12,8 +12,13 @@ import DBG from 'debug';
 const debug = DBG('notes:debug'); 
 const error = DBG('notes:error'); 
 import { router as index } from './routes/index';
-// const users = require('./routes/users');
+import { router as users, initPassport } from './routes/users';
 import { router as notes } from './routes/notes'; 
+
+import session from 'express-session';
+import sessionFileStore from 'session-file-store';
+const FileStore = sessionFileStore(session); 
+export const sessionCookieName = 'notescookie.sid';
 
 // Workaround for lack of __dirname in ES6 modules
 const __dirname = path.dirname(new URL(import.meta.url).pathname).slice(1,);
@@ -22,6 +27,16 @@ console.log(__dirname);
 const app = express();
 
 import rfs from 'rotating-file-stream';
+
+
+app.use(session({ 
+  store: new FileStore({ path: "sessions" }), 
+  secret: 'keyboard mouse',
+  resave: true,
+  saveUninitialized: true,
+  name: sessionCookieName
+})); 
+initPassport(app);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -43,22 +58,23 @@ app.use('/assets/vendor/feather-icons', express.static(
   path.join(__dirname, 'node_modules', 'feather-icons', 'dist'))); 
 
 app.use('/', index);
+app.use('/users', users); 
 app.use('/notes', notes);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+// app.use(function(req, res, next) {
+//   next(createError(404));
+// });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+// // error handler
+// app.use(function(err, req, res, next) {
+//   // set locals, only providing error in development
+//   res.locals.message = err.message;
+//   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+//   // render the error page
+//   res.status(err.status || 500);
+//   res.render('error');
+// });
 
 export default app;

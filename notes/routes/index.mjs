@@ -12,5 +12,5 @@ router.get('/', async function(req, res, next) {
   })
 
   let noteList = await Promise.all(keyPromises);
-  res.render('index', { title: 'Notes', notelist: noteList });
+  res.render('index', { title: 'Notes', notelist: noteList, user: req.user ? req.user : undefined });
 });

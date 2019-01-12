@@ -4,7 +4,9 @@
   "description": "",
   "main": "user-server.mjs",
   "scripts": {
-    "start": "cross-env DEBUG=users:* PORT=3333 SEQUELIZE_CONNECT=sequelize-sqlite.yaml node --experimental-modules user-server"
+    "start": "cross-env DEBUG=users:* PORT=3333 SEQUELIZE_CONNECT=sequelize-sqlite.yaml nodemon --experimental-modules user-server",
+    "create-user": "cross-env PORT=3333 node users-add.js",
+    "find-user": "cross-env PORT=3333 node users-find.js me"
   },
   "author": "",
   "license": "ISC",
