@@ -11,3 +11,4 @@ Winston log rotation
 Node error handling (promise rejection, module error, etc. etc.)
 Sequelize
 js-yaml
+CORS
